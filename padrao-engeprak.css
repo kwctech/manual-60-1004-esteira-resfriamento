@@ -1,0 +1,76 @@
+
+        /* ===== v2: cores Engeprak (MIV) + crédito KWC + desempenho ===== */
+        :root {
+            --ege-steel: #B8C2C9;
+            --ege-ice: #F3F6F7;
+            --ege-graphite: #606060;
+            --kwc-green: #39FF6A;
+        }
+        /* Logo fiel (horizontal com engrenagem) */
+        .brand { padding: 26px 22px 22px; }
+        .brand svg.logo-ege { display: block; width: 100%; max-width: 250px; height: auto; margin: 0 auto 14px; }
+        .brand-subtitle { color: var(--ege-ice); border-color: rgba(230,111,57,.45); background: rgba(230,111,57,.10); }
+        .brand-code { color: var(--ege-orange); opacity: 1; font-weight: 700; }
+        .brand::after { content: ''; display: block; height: 3px; margin: 18px -22px -22px; background: linear-gradient(90deg, var(--ege-blue) 0 60%, var(--ege-orange) 60% 100%); }
+
+        /* Menu: azul + laranja */
+        .nav-item:hover { background: rgba(0,146,213,.10); color: #fff; border-left-color: var(--ege-blue); }
+        .nav-item.active { background: linear-gradient(90deg, rgba(230,111,57,.18), transparent); color: #fff; border-left-color: var(--ege-orange); text-shadow: none; }
+        .nav-item.active i { color: var(--ege-orange); }
+
+        /* Títulos com faixa azul/laranja */
+        h1.page-title { border-left: 0; padding-left: 0; font-size: clamp(1.9rem, 4vw, 3rem); letter-spacing: .5px;
+            background: linear-gradient(90deg, #fff 0%, #fff 55%, #7fd0f5 100%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+        h1.page-title::after { content: ''; display: block; width: 120px; height: 4px; margin-top: 10px; border-radius: 2px; background: linear-gradient(90deg, var(--ege-blue) 0 65%, var(--ege-orange) 65%); }
+        h2 { border-bottom: 0; position: relative; }
+        h2::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: linear-gradient(90deg, var(--ege-blue), rgba(0,146,213,.15) 70%, transparent); }
+        h2 i { color: #fff; background: var(--ege-blue); border-radius: 8px; padding: 6px; font-size: 1.25rem; box-shadow: 0 6px 16px rgba(0,146,213,.35); }
+        section:nth-of-type(even) h2 i { background: var(--ege-orange); box-shadow: 0 6px 16px rgba(230,111,57,.35); }
+        h3 { color: var(--ege-orange); }
+
+        /* Cartões com cores alternadas da marca */
+        .data-card { border-radius: 10px; background: linear-gradient(160deg, rgba(0,146,213,.10), var(--bg-card) 55%); }
+        .data-card::before { width: 100%; height: 3px; opacity: 1; background: var(--ege-blue); }
+        .data-card:nth-child(3n+2)::before { background: var(--ege-orange); }
+        .data-card:nth-child(3n+2) strong { color: var(--ege-orange); }
+        .data-card:nth-child(3n)::before { background: var(--ege-steel); }
+        .data-card:nth-child(3n) strong { color: var(--ege-steel); }
+        .component-box { border-radius: 10px; }
+
+        /* Tabelas */
+        th { background: rgba(0,146,213,.16); color: #fff; border-bottom: 2px solid var(--ege-blue); }
+        tr:nth-child(even) td { background: rgba(255,255,255,.02); }
+        tr:hover td { background: rgba(230,111,57,.06); }
+
+        /* Fundo mais vivo, sem custo de pintura */
+        .main-content { background-image: radial-gradient(1200px 500px at 100% 0%, rgba(0,146,213,.16), transparent 60%), radial-gradient(900px 400px at 0% 100%, rgba(230,111,57,.08), transparent 60%); }
+        .main-content::before { color: rgba(255,255,255,.02); }
+
+        /* Crédito KWC Industrial TECH em verde (identidade KWC) */
+        .kwc-credit { color: var(--kwc-green) !important; font-weight: 800; letter-spacing: .06em; text-shadow: 0 0 14px rgba(57,255,106,.35); }
+        .dev-banner { border-color: rgba(57,255,106,.45); background: linear-gradient(90deg, rgba(57,255,106,.08), rgba(57,255,106,.02)); box-shadow: inset 3px 0 0 var(--kwc-green); }
+        .fixed-footer { border-top: 1px solid rgba(57,255,106,.35); }
+        .fixed-footer-text { font-size: .72rem; }
+        .kwc-watermark { border-color: rgba(57,255,106,.35); }
+        .kwc-watermark-dot { background: var(--kwc-green); box-shadow: 0 0 6px var(--kwc-green); }
+        .contact-card:not(.orange) { border-color: rgba(57,255,106,.35); background: linear-gradient(145deg, rgba(57,255,106,.08), rgba(8,45,67,.85)); }
+        .contact-card:not(.orange) .role { color: var(--kwc-green); }
+
+        /* Desempenho: menos trabalho de pintura */
+        .fixed-footer, .kwc-watermark { backdrop-filter: none; -webkit-backdrop-filter: none; }
+        .fixed-footer { background: rgba(6,20,30,.96); }
+        .kwc-watermark { background: rgba(6,20,30,.92); }
+        section { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+        section#capa { content-visibility: visible; }
+        img { max-width: 100%; height: auto; }
+        @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            .brand svg.logo-ege { max-width: 210px; }
+            .fixed-footer { left: 0; padding: 9px 12px; }
+            .fixed-footer-text { font-size: .62rem; letter-spacing: 1px; }
+            .kwc-watermark { display: none; }
+            h2 i { padding: 5px; font-size: 1.1rem; }
+            .data-grid { grid-template-columns: 1fr; }
+        }
