@@ -1,5 +1,5 @@
 
-        /* ===== v2: cores Engeprak (MIV) + crédito KWC + desempenho ===== */
+        /* ===== v2: cores + crédito + desempenho ===== */
         :root {
             --ege-steel: #B8C2C9;
             --ege-ice: #F3F6F7;
@@ -46,7 +46,7 @@
         .main-content { background-image: radial-gradient(1200px 500px at 100% 0%, rgba(0,146,213,.16), transparent 60%), radial-gradient(900px 400px at 0% 100%, rgba(230,111,57,.08), transparent 60%); }
         .main-content::before { color: rgba(255,255,255,.02); }
 
-        /* Crédito KWC Industrial TECH em verde (identidade KWC) */
+        /* Crédito KWC Industrial TECH em verde */
         .kwc-credit { color: var(--kwc-green) !important; font-weight: 800; letter-spacing: .06em; text-shadow: 0 0 14px rgba(57,255,106,.35); }
         .dev-banner { border-color: rgba(57,255,106,.45); background: linear-gradient(90deg, rgba(57,255,106,.08), rgba(57,255,106,.02)); box-shadow: inset 3px 0 0 var(--kwc-green); }
         .fixed-footer { border-top: 1px solid rgba(57,255,106,.35); }

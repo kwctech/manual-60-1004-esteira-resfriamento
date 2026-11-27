@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual Técnico — 60.1004 Esteira de Resfriamento | Engeprak</title>
     <meta name="theme-color" content="#082D43">
-    <meta name="description" content="Manual técnico digital 60.1004 · Esteira de resfriamento de compensados · Engeprak · KWC Industrial TECH">
+    <meta name="description" content="Manual técnico digital 60.1004 · Esteira de resfriamento de compensados · Projeto ENGEPRAK Engenharia · Desenvolvimento digital KWC Industrial TECH">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Manual Técnico — 60.1004 Esteira de Resfriamento | Engeprak">
-    <meta property="og:description" content="Esteira de resfriamento de compensados · Engeprak · Desenvolvido por KWC Industrial TECH">
+    <meta property="og:description" content="Esteira de resfriamento de compensados · Projeto ENGEPRAK Engenharia · Desenvolvimento digital KWC Industrial TECH">
     <meta property="og:image" content="https://kwctech.github.io/manual-60-1004-esteira-resfriamento/equipamento-esteira-elevada.png">
     <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:url" content="https://kwctech.github.io/manual-60-1004-esteira-resfriamento/">
-    <!-- Presença KWC padrão (igual em todos os manuais) -->
-    <script defer src="kwc-presenca.js" data-codigo="60.1004" data-rev="01" data-data="23/11/2026" data-cliente="Engeprak" data-equipamento="Esteira de resfriamento de compensados 60.1004"></script>
+    <!-- Crédito KWC: só na ficha de controle, no fim do manual -->
+    <script defer src="kwc-presenca.js" data-codigo="60.1004" data-rev="01" data-data="23/11/2026" data-cliente="Engeprak" data-projeto="ENGEPRAK Engenharia" data-selo="0" data-barra="0" data-equipamento="Esteira de resfriamento de compensados 60.1004"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="esteira_isometrico.jpg" fetchpriority="high">
@@ -1551,7 +1551,7 @@
             .contact-grid { grid-template-columns: 1fr; }
         }
 
-        /* ===== v2: cores Engeprak (MIV) + crédito KWC + desempenho ===== */
+        /* ===== v2: cores + crédito + desempenho ===== */
         :root {
             --ege-steel: #B8C2C9;
             --ege-ice: #F3F6F7;
@@ -1598,7 +1598,7 @@
         .main-content { background-image: radial-gradient(1200px 500px at 100% 0%, rgba(0,146,213,.16), transparent 60%), radial-gradient(900px 400px at 0% 100%, rgba(230,111,57,.08), transparent 60%); }
         .main-content::before { color: rgba(255,255,255,.02); }
 
-        /* Crédito KWC Industrial TECH em verde (identidade KWC) */
+        /* Crédito KWC Industrial TECH em verde */
         .kwc-credit { color: var(--kwc-green) !important; font-weight: 800; letter-spacing: .06em; text-shadow: 0 0 14px rgba(57,255,106,.35); }
         .dev-banner { border-color: rgba(57,255,106,.45); background: linear-gradient(90deg, rgba(57,255,106,.08), rgba(57,255,106,.02)); box-shadow: inset 3px 0 0 var(--kwc-green); }
         .fixed-footer { border-top: 1px solid rgba(57,255,106,.35); }
@@ -1627,9 +1627,77 @@
             .data-grid { grid-template-columns: 1fr; }
         }
 
+
+        /* ===== v3: fundo vivo + cards com brilho ===== */
+        .ege-credit { color: #fff; font-weight: 800; letter-spacing: .04em; }
+        .main-content { background: transparent !important; position: relative; z-index: 1; }
+        .sidebar { z-index: 20; }
+        /* fundo: luzes azul/laranja que se movem devagar + grade de projeto */
+        .ege-fundo { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .ege-fundo i { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; will-change: transform; }
+        .ege-fundo i:nth-child(1) { width: 46vw; height: 46vw; right: -12vw; top: -14vw; background: radial-gradient(circle, rgba(0,146,213,.55), transparent 65%); animation: ege-flut1 26s ease-in-out infinite alternate; }
+        .ege-fundo i:nth-child(2) { width: 38vw; height: 38vw; left: 8vw; bottom: -16vw; background: radial-gradient(circle, rgba(230,111,57,.35), transparent 65%); animation: ege-flut2 32s ease-in-out infinite alternate; }
+        .ege-fundo i:nth-child(3) { width: 30vw; height: 30vw; left: 42vw; top: 30vh; background: radial-gradient(circle, rgba(0,146,213,.22), transparent 65%); animation: ege-flut3 38s ease-in-out infinite alternate; }
+        .ege-fundo::before { content: ''; position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(127,208,245,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(127,208,245,.07) 1px, transparent 1px);
+            background-size: 44px 44px;
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%); mask-image: radial-gradient(ellipse 80% 70% at 60% 40%, #000 30%, transparent 85%); }
+        .ege-fundo::after { content: ''; position: absolute; left: 0; right: 0; height: 160px; top: -160px;
+            background: linear-gradient(180deg, transparent, rgba(0,146,213,.06), transparent);
+            animation: ege-varre 14s linear infinite; }
+        @keyframes ege-flut1 { to { transform: translate(-8vw, 10vh) scale(1.12); } }
+        @keyframes ege-flut2 { to { transform: translate(10vw, -8vh) scale(1.18); } }
+        @keyframes ege-flut3 { to { transform: translate(-14vw, 12vh) scale(.9); } }
+        @keyframes ege-varre { to { transform: translateY(calc(100vh + 160px)); } }
+
+        /* cards: vidro, borda que acende e luz que segue o mouse */
+        .data-card, .component-box, .contact-card, .diagram-card, .table-responsive {
+            position: relative; isolation: isolate;
+            background-color: rgba(14,51,72,.72) !important;
+            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+            box-shadow: 0 10px 30px -18px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.04);
+            transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, border-color .35s;
+        }
+        .data-card::after, .component-box::after, .contact-card::after {
+            content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+            background: radial-gradient(360px circle at var(--mx, 50%) var(--my, -40%), rgba(0,146,213,.18), transparent 60%);
+            opacity: 0; transition: opacity .35s;
+        }
+        .data-card:hover, .component-box:hover, .contact-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,146,213,.65) !important;
+            box-shadow: 0 18px 40px -18px rgba(0,146,213,.55), 0 0 0 1px rgba(0,146,213,.25), inset 0 1px 0 rgba(255,255,255,.06);
+        }
+        .data-card:nth-child(3n+2):hover, .contact-card.orange:hover {
+            border-color: rgba(230,111,57,.65) !important;
+            box-shadow: 0 18px 40px -18px rgba(230,111,57,.5), 0 0 0 1px rgba(230,111,57,.25);
+        }
+        .data-card:hover::after, .component-box:hover::after, .contact-card:hover::after { opacity: 1; }
+        .component-box { border-left-width: 3px; }
+        .img-wrapper { transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
+        .img-wrapper:hover { transform: translateY(-3px); box-shadow: 0 24px 50px -20px rgba(0,146,213,.55); }
+        .img-wrapper img { transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+        .img-wrapper:hover img { transform: scale(1.025); }
+        tbody tr { transition: background-color .2s; }
+        tbody tr:hover { background: rgba(0,146,213,.08); }
+        .btn-cotar { transition: transform .2s, box-shadow .2s, background-color .2s, color .2s; }
+        .btn-cotar:hover { transform: translateY(-1px); box-shadow: 0 6px 18px -6px rgba(37,211,102,.7); }
+
+        /* entrada suave ao rolar */
+        .ege-rev { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1); }
+        .ege-rev.ege-vis { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ege-fundo i, .ege-fundo::after { animation: none; }
+            .ege-rev { opacity: 1; transform: none; transition: none; }
+            .data-card:hover, .component-box:hover, .contact-card:hover, .img-wrapper:hover { transform: none; }
+        }
+        @media (max-width: 768px) { .ege-fundo i { filter: blur(50px); opacity: .45; } }
+        @media print { .ege-fundo { display: none; } .ege-rev { opacity: 1 !important; transform: none !important; } }
     </style>
 </head>
 <body>
+    <div class="ege-fundo" aria-hidden="true"><i></i><i></i><i></i></div>
 
     <!-- BOTÃO MENU MOBILE -->
     <button class="mobile-toggle" onclick="toggleMenu()">
@@ -1647,7 +1715,7 @@
 
     <!-- BARRA LATERAL (SIDEBAR) -->
     <nav class="sidebar">
-        <!-- BRANDING KWC TECH (HERO) -->
+        <!-- MARCA ENGEPRAK -->
         <div class="brand">
             <svg class="logo-ege" role="img" aria-label="Engeprak" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1342 340"><path fill="#fff" fill-rule="evenodd" d="M479 244 479 261 549 261 549 244 546 242 482 242ZM38 244 38 261 108 261 108 243 107 242 40 242ZM1058 190 1058 316 1059 317 1079 317 1080 315 1080 191 1079 190ZM0 190 0 317 113 317 113 295 112 294 24 294 22 291 22 214 24 212 113 212 113 190ZM724 190 723 192 723 315 724 317 745 317 746 316 746 213 747 212 816 212 825 214 832 218 836 223 838 229 838 244 836 251 831 257 820 261 764 262 762 265 762 280 763 281 806 281 813 285 819 291 830 306 842 317 871 317 872 316 869 310 838 280 854 265 860 254 862 245 862 229 860 224 860 219 853 205 847 199 834 192 818 189 726 189ZM573 190 573 317 595 317 596 315 596 213 597 212 662 212 667 214 673 214 682 221 686 231 686 240 684 247 675 257 670 259 612 260 610 262 611 281 677 281 689 276 699 267 703 261 708 249 709 241 708 223 701 207 694 199 688 195 674 190 664 189 581 189ZM440 190 439 192 440 317 553 317 554 316 554 296 552 294 464 294 462 292 462 213 463 212 553 212 554 211 554 192 551 189 442 189ZM295 209 288 219 282 234 281 257 282 266 286 280 291 290 300 301 317 312 334 317 419 317 419 243 418 242 342 242 340 243 340 260 341 261 395 261 397 263 397 292 395 294 334 293 331 291 328 291 320 287 312 279 308 273 305 262 305 244 307 237 312 228 320 220 332 214 337 214 342 212 410 212 413 209 413 192 409 189 329 190 310 197ZM1165 188 1153 193 1126 215 1098 235 1089 243 1087 246 1086 253 1087 257 1095 265 1142 301 1159 317 1194 317 1195 315 1113 253 1113 251 1117 247 1175 205 1192 190ZM138 188 134 192 131 201 132 317 152 317 153 316 154 244 156 228 242 314 250 319 258 318 262 314 265 305 265 191 263 188 243 188 242 189 242 277 241 278 177 215 173 213 172 210 156 194 147 188ZM1044 314 1012 263 1012 261 1003 248 1003 246 971 193 965 188 961 187 954 189 949 194 897 280 877 316 887 318 903 317 907 313 918 290 943 250 943 248 956 228 956 226 959 223 975 246 975 248 982 258 985 265 984 266 950 266 946 268 939 284 940 285 967 285 968 284 995 285 1004 292 1009 306 1011 308 1011 311 1015 316 1022 319 1026 319 1031 317 1043 317ZM1005 60 991 76 983 90 1009 123 1017 127 1072 127 1077 126 1089 115 1109 104 1112 104 1120 100 1137 97 1156 97 1174 100 1176 102 1180 102 1182 104 1185 104 1195 109 1207 117 1224 134 1232 146 1239 161 1239 164 1241 166 1244 180 1245 190 1244 209 1235 240 1235 313 1238 317 1270 337 1279 339 1285 333 1302 312 1301 308 1277 276 1278 269 1285 256 1285 253 1287 251 1292 238 1295 219 1297 216 1302 216 1341 205 1341 171 1338 166 1326 165 1294 158 1285 132 1271 107 1272 101 1283 86 1283 84 1294 67 1275 47 1269 42 1264 41 1230 65 1224 65 1204 54 1201 54 1189 49 1176 47 1173 44 1171 33 1169 30 1169 25 1167 21 1167 16 1162 0 1128 0 1123 3 1123 9 1121 13 1121 18 1115 45 1109 49 1104 49 1102 51 1099 51 1081 58 1070 65 1068 65 1051 78 1044 78 1020 65Z"/></svg>
             <div class="brand-subtitle">Manual Técnico Digital</div>
@@ -1726,7 +1794,7 @@
 
                 <div class="component-box" style="margin-top: 30px;">
                     <h4>Apresentação do Projeto</h4>
-                    <p>Documentação técnica digital de instalação, operação, manutenção e segurança do <strong>Conjunto Esteira de Resfriamento de Compensados</strong> (código KWC <strong>60.1004</strong> / código cliente <strong>165.0001.03.00</strong>). Identidade visual <strong>Engeprak</strong>; desenvolvimento digital <span class="kwc-credit">KWC Industrial TECH</span>.</p>
+                    <p>Documentação técnica digital de instalação, operação, manutenção e segurança do <strong>Conjunto Esteira de Resfriamento de Compensados</strong> (código KWC <strong>60.1004</strong> / código cliente <strong>165.0001.03.00</strong>). Projeto desenvolvido pela <strong>ENGEPRAK Engenharia</strong>; desenvolvimento digital <span class="kwc-credit">KWC Industrial TECH</span>.</p>
                 </div>
 
                 <h3>Identificação do Equipamento</h3>
@@ -1744,8 +1812,8 @@
                         <span>165.0001.03.00</span>
                     </div>
                     <div class="data-card">
-                        <strong>Proprietário</strong>
-                        <span>Engeprak</span>
+                        <strong>Projeto</strong>
+                        <span>ENGEPRAK Engenharia</span>
                     </div>
                     <div class="data-card">
                         <strong>Montagem principal</strong>
@@ -1904,7 +1972,7 @@
                                 <td>Prop. SEW 426143805</td>
                                 <td>1</td>
                                 <td>SEW-EURODRIVE</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20motoredutor%20SEW%20KA37%2FT%20DRN80MP4%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20motoredutor%20SEW%20KA37%2FT%20DRN80MP4%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1912,7 +1980,7 @@
                                 <td>Klein 038609</td>
                                 <td>2</td>
                                 <td>Klein Automação</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20cilindro%20DS2C-80-350-M-C%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20cilindro%20DS2C-80-350-M-C%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1920,7 +1988,7 @@
                                 <td>Klein 030120 / JG0214</td>
                                 <td>2</td>
                                 <td>Klein Automação</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20garfo%20ISO%2080%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20garfo%20ISO%2080%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1928,7 +1996,7 @@
                                 <td>Klein 025058 / CF0411</td>
                                 <td>2</td>
                                 <td>Klein Automação</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20CA-80%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20CA-80%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1936,7 +2004,7 @@
                                 <td>PCA-1/2-D-MIDI-ST / STK1002</td>
                                 <td>1</td>
                                 <td>Klein Automação</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1%2F2%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1%2F2%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1944,7 +2012,7 @@
                                 <td>52S30038-24VCC / STK1015</td>
                                 <td>1</td>
                                 <td>Klein Automação</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20v%C3%A1lvula%2052S30038%2024VCC%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20v%C3%A1lvula%2052S30038%2024VCC%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Correia</td>
@@ -1952,7 +2020,7 @@
                                 <td>WECO 46626 item 1</td>
                                 <td>4</td>
                                 <td>WECO do Brasil</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W50MV-G%2095x2925%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W50MV-G%2095x2925%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Correia</td>
@@ -1960,7 +2028,15 @@
                                 <td>WECO 46626 item 2</td>
                                 <td>1</td>
                                 <td>WECO do Brasil</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W20V-B%20280x3000%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W20V-B%20280x3000%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                            </tr>
+                            <tr>
+                                <td>Rolamento</td>
+                                <td>Rolamento 6200 DDU (vedado) · rolinhos de apoio de saída</td>
+                                <td>6200 DDU · 10×30×9 mm</td>
+                                <td>4</td>
+                                <td>Comercial</td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%204%20rolamentos%206200%20DDU%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Mancal</td>
@@ -1968,7 +2044,7 @@
                                 <td>SNR UCFL208</td>
                                 <td>20</td>
                                 <td>SNR / comercial</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20UCFL208%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20UCFL208%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Transmissão</td>
@@ -1976,7 +2052,7 @@
                                 <td>Modelo CAD</td>
                                 <td>66 + 66</td>
                                 <td>Comercial</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20corrente%20ASA%2060%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20corrente%20ASA%2060%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                             <tr>
                                 <td>Pneumática</td>
@@ -1984,7 +2060,7 @@
                                 <td>Modelo CAD</td>
                                 <td>2 + 2</td>
                                 <td>Comercial</td>
-                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5547997485816?text=Ol%C3%A1%2C%20preciso%20cotar%20articula%C3%A7%C3%A3o%20ISO%2080%20e%20ponteira%20M20%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
+                                <td><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20articula%C3%A7%C3%A3o%20ISO%2080%20e%20ponteira%20M20%20para%2060.1004"><i class="material-icons-round">shopping_cart</i> Cotar</a></td>
                             </tr>
                         </tbody>
                     </table>
@@ -2073,17 +2149,17 @@
 
                 <hr style="border: 0; border-top: 1px solid var(--border); margin: 50px 0;">
                 <div style="text-align: center; opacity: 0.88; font-size: 0.85rem;">
-                    <p>Manual digital do <strong>Conjunto 165.0001.03.00</strong> (KWC <strong>60.1004</strong>) com identidade visual <strong>Engeprak</strong>.</p>
+                    <p>Manual digital do <strong>Conjunto 165.0001.03.00</strong> (KWC <strong>60.1004</strong>) · projeto <strong>ENGEPRAK Engenharia</strong>.</p>
                     <p style="margin-top: 10px;">Consulte este manual sempre que houver dúvidas operacionais.</p>
                 </div>
             </section>
 
             <footer style="margin-top: 80px; padding: 40px 0 70px; border-top: 1px solid var(--border); text-align: center; color: var(--text-main); font-size: 0.85rem;">
-                <div class="dev-banner">Desenvolvido por <strong class="kwc-credit">KWC Industrial TECH</strong></div>
+                <div class="dev-banner">Projeto <strong class="ege-credit">ENGEPRAK Engenharia</strong> · desenvolvimento digital <strong class="kwc-credit">KWC Industrial TECH</strong></div>
                 <div class="contact-grid">
                     <div class="contact-card orange">
-                        <div class="role">Cliente · Engenharia</div>
-                        <h4>Engeprak</h4>
+                        <div class="role">Projeto · Engenharia</div>
+                        <h4>ENGEPRAK Engenharia</h4>
                         <p><strong>Eng. Julio Cesar</strong></p>
                         <p>Engenheiro</p>
                         <p><a href="tel:+5549991829555"><i class="material-icons-round" style="font-size:18px;color:#E66F39;">call</i> (49) 99182-9555</a></p>
@@ -2098,7 +2174,7 @@
                         <p><a href="https://wa.me/5547997485816" target="_blank" rel="noopener"><i class="material-icons-round" style="font-size:18px;color:#25d366;">chat</i> WhatsApp</a></p>
                     </div>
                 </div>
-                <p style="margin-top:28px;opacity:.75;">60.1004 · 165.0001.03.00 · Manual digital com identidade <strong style="color:#fff">Engeprak</strong></p>
+                <p style="margin-top:28px;opacity:.75;">60.1004 · 165.0001.03.00 · Projeto <strong style="color:#fff">ENGEPRAK Engenharia</strong></p>
                 <div data-kwc-ficha></div>
             </footer>
 
@@ -2202,5 +2278,28 @@
         }
     </script>
 
+
+    <script>
+        /* v3: luz que segue o mouse nos cards + entrada suave ao rolar */
+        (function () {
+            var cards = '.data-card, .component-box, .contact-card';
+            document.addEventListener('pointermove', function (e) {
+                var c = e.target.closest && e.target.closest(cards);
+                if (!c) return;
+                var r = c.getBoundingClientRect();
+                c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+            }, { passive: true });
+            if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var raiz = document.querySelector('.main-content');
+            var io = new IntersectionObserver(function (es) {
+                es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('ege-vis'); io.unobserve(en.target); } });
+            }, { root: raiz, rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+            document.querySelectorAll('.main-content section > *:not(h1):not(h2), .contact-card').forEach(function (el, i) {
+                if (el.closest('#capa') && i < 6) return; /* topo da capa aparece na hora */
+                el.classList.add('ege-rev'); io.observe(el);
+            });
+        })();
+    </script>
 </body>
 </html>

@@ -3,7 +3,8 @@
 **Cliente:** Engeprak  
 **Código KWC:** 60.1004  
 **Código cliente:** 165.0001.03.00  
-**Desenvolvido por:** KWC Industrial TECH
+**Projeto:** ENGEPRAK Engenharia  
+**Desenvolvimento digital:** KWC Industrial TECH
 
 ## Online
 
