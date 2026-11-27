@@ -13,8 +13,8 @@
     <meta property="og:image:type" content="image/png">
     <meta name="twitter:card" content="summary_large_image">
     <meta property="og:url" content="https://kwctech.github.io/manual-60-1004-esteira-resfriamento/">
-    <!-- Crédito KWC: só na ficha de controle, no fim do manual -->
-    <script defer src="kwc-presenca.js" data-codigo="60.1004" data-rev="01" data-data="23/11/2026" data-cliente="Engeprak" data-projeto="ENGEPRAK Engenharia" data-selo="0" data-barra="0" data-equipamento="Esteira de resfriamento de compensados 60.1004"></script>
+    <!-- Crédito KWC: barra inferior e ficha de controle no fim (sem selo na capa) -->
+    <script defer src="kwc-presenca.js" data-codigo="60.1004" data-rev="01" data-data="23/11/2026" data-cliente="Engeprak" data-projeto="ENGEPRAK Engenharia" data-selo="0" data-equipamento="Esteira de resfriamento de compensados 60.1004"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="image" href="esteira_isometrico.jpg" fetchpriority="high">
@@ -1694,6 +1694,74 @@
         }
         @media (max-width: 768px) { .ege-fundo i { filter: blur(50px); opacity: .45; } }
         @media print { .ege-fundo { display: none; } .ege-rev { opacity: 1 !important; transform: none !important; } }
+
+        /* ===== diagnóstico interativo ===== */
+        .dg-seg { margin: 14px 0 18px; }
+        .dg-ctrl { position: sticky; top: 0; z-index: 5; display: grid; gap: 12px; padding: 14px; margin-bottom: 16px; border: 1px solid var(--border); border-radius: 12px; background: rgba(6,31,46,.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+        .dg-busca { display: flex; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--border); border-radius: 10px; background: rgba(8,45,67,.7); }
+        .dg-busca i { color: var(--accent); font-size: 20px; }
+        .dg-busca input { flex: 1; min-width: 0; height: 42px; border: 0; outline: 0; background: transparent; color: #fff; font: inherit; font-size: .95rem; }
+        .dg-busca:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,146,213,.18); }
+        .dg-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .dg-chip { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-main); font: 600 .82rem/1 var(--font-body); cursor: pointer; transition: all .2s; }
+        .dg-chip i { font-size: 16px; }
+        .dg-chip b { min-width: 20px; padding: 2px 6px; border-radius: 999px; background: rgba(255,255,255,.08); font-size: .72rem; text-align: center; }
+        .dg-chip:hover { border-color: var(--accent); color: #fff; }
+        .dg-chip.ativo { background: var(--ege-blue); border-color: var(--ege-blue); color: #fff; box-shadow: 0 6px 18px -6px rgba(0,146,213,.7); }
+        .dg-chip.ativo b { background: rgba(0,0,0,.22); }
+        .dg-acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+        .dg-cont { margin-right: auto; font-size: .82rem; color: var(--text-main); }
+        .dg-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 8px; background: rgba(8,45,67,.6); color: #fff; font: 600 .8rem/1 var(--font-body); cursor: pointer; }
+        .dg-btn i { font-size: 18px; }
+        .dg-btn:hover { border-color: var(--accent); }
+        .dg-lista { display: grid; gap: 10px; }
+        .dg-item { position: relative; border: 1px solid var(--border); border-left: 4px solid var(--ege-blue); border-radius: 12px; background: rgba(14,51,72,.72); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); overflow: hidden; transition: border-color .25s, box-shadow .25s, transform .25s; }
+        .dg-item[data-sev="crit"] { border-left-color: #ff5f5f; }
+        .dg-item[data-sev="alta"] { border-left-color: var(--ege-orange); }
+        .dg-item:hover { transform: translateY(-2px); border-color: rgba(0,146,213,.6); box-shadow: 0 14px 34px -18px rgba(0,146,213,.6); }
+        .dg-item[open] { border-color: rgba(0,146,213,.6); box-shadow: 0 16px 40px -18px rgba(0,146,213,.55); }
+        .dg-item > summary { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; list-style: none; }
+        .dg-item > summary::-webkit-details-marker { display: none; }
+        .dg-num { flex: none; display: grid; place-items: center; width: 38px; height: 38px; border-radius: 10px; background: rgba(0,146,213,.14); color: var(--accent); font: 700 .95rem/1 var(--font-title); }
+        .dg-tit { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+        .dg-tit b { color: #fff; font-size: 1rem; }
+        .dg-tit small { color: var(--text-main); font-size: .84rem; line-height: 1.45; }
+        .dg-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+        .dg-tags em { font-style: normal; padding: 4px 9px; border-radius: 999px; font-size: .7rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+        .dg-sis { background: rgba(255,255,255,.06); color: var(--text-main); }
+        .dg-sev-crit { background: rgba(255,95,95,.16); color: #ff8a8a; }
+        .dg-sev-alta { background: rgba(230,111,57,.16); color: #f29a6e; }
+        .dg-sev-media { background: rgba(0,146,213,.16); color: #7fd0f5; }
+        .dg-seta { flex: none; color: var(--accent); transition: transform .3s; }
+        .dg-item[open] .dg-seta { transform: rotate(180deg); }
+        .dg-corpo { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border); animation: dg-abre .35s ease; }
+        @keyframes dg-abre { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+        .dg-col { padding: 14px 16px; background: rgba(8,45,67,.92); }
+        .dg-col h5 { display: flex; align-items: center; gap: 6px; margin-bottom: 8px; color: #fff; font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; }
+        .dg-col h5 i { font-size: 18px; color: var(--accent); }
+        .dg-col:nth-child(2) h5 i { color: var(--ege-orange); }
+        .dg-col:nth-child(3) h5 i { color: var(--success); }
+        .dg-col ol { padding-left: 18px; font-size: .88rem; line-height: 1.55; }
+        .dg-col li + li { margin-top: 6px; }
+        .dg-pe { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(6,31,46,.95); }
+        .dg-pe .btn-cotar { margin: 0; }
+        .dg-sup { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 7px 12px; border-radius: 8px; border: 1px solid rgba(230,111,57,.5); color: #f29a6e; font-size: .82rem; font-weight: 700; text-decoration: none; }
+        .dg-sup:hover { background: rgba(230,111,57,.12); color: #fff; }
+        .dg-sup i { font-size: 18px; }
+        .dg-vazio { margin-top: 14px; padding: 14px; border: 1px dashed var(--border); border-radius: 10px; text-align: center; }
+        .dg-vazio a { color: var(--accent); }
+        mark.dg-m { background: rgba(230,111,57,.35); color: #fff; border-radius: 3px; padding: 0 2px; }
+        @media (max-width: 900px) { .dg-corpo { grid-template-columns: 1fr; } }
+        @media (max-width: 640px) {
+            .dg-item > summary { flex-wrap: wrap; gap: 10px; padding: 12px; }
+            .dg-tags { order: 3; width: 100%; justify-content: flex-start; padding-left: 48px; }
+            .dg-num { width: 34px; height: 34px; }
+            .dg-sup { margin-left: 0; }
+            .dg-ctrl { position: static; }
+            .dg-chips { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+            .dg-chip { flex: none; }
+        }
+        @media print { .dg-ctrl { display: none; } .dg-corpo { display: grid !important; } .dg-item { break-inside: avoid; } }
     </style>
 </head>
 <body>
@@ -2121,18 +2189,295 @@
 
             <section id="diagnostico">
                 <h2><i class="material-icons-round">troubleshoot</i> Diagnóstico de Falhas</h2>
-                <div class="table-responsive">
-                    <table>
-                        <thead><tr><th>Sintoma</th><th>Causa provável</th><th>Ação</th></tr></thead>
-                        <tbody>
-                            <tr><td>Esteira não sobe</td><td>Sem pressão / válvula 24 VCC / vazamento</td><td>Checar FRL, bobina e mangueiras</td></tr>
-                            <tr><td>Chapas não avançam</td><td>Correia frouxa ou motor sem giro</td><td>Tensionar W50MV-G; verificar SEW e proteção</td></tr>
-                            <tr><td>Empenamento das chapas</td><td>Molhagem insuficiente ou ciclo lento</td><td>Ajustar pulverização e sincronismo com a prensa</td></tr>
-                            <tr><td>Pacote irregular na caixa</td><td>Altura de queda / sincronismo de saída</td><td>Conferir guia de saída e timing do ciclo</td></tr>
-                            <tr><td>Ruído na transmissão</td><td>Corrente ASA frouxa ou mancal seco</td><td>Esticar corrente; lubrificar UCFL208</td></tr>
-                        </tbody>
-                    </table>
+                <p>Escolha o sistema ou busque pelo sintoma. Toque na falha para abrir: <strong>causas</strong>, <strong>como verificar</strong>, <strong>como corrigir</strong> e as <strong>peças</strong> envolvidas.</p>
+                <div class="alert-box dg-seg">
+                    <strong>Antes de mexer:</strong> bloqueio elétrico e pneumático (LOTO), aliviar o ar dos cilindros e travar os braços. Nunca ficar sob os braços elevados. Testes com a máquina ligada só pelo operador treinado.
                 </div>
+                <div class="dg-ctrl">
+                    <div class="dg-busca"><i class="material-icons-round">search</i><input type="search" id="dgBusca" placeholder="Ex.: não sobe, ruído, patina, vazamento…" aria-label="Buscar sintoma"></div>
+                    <div class="dg-chips" role="group" aria-label="Filtrar por sistema">
+                        <button type="button" class="dg-chip ativo" data-sis="todos">Todos <b></b></button>
+                        <button type="button" class="dg-chip" data-sis="pneu"><i class="material-icons-round">air</i>Pneumática <b></b></button>
+                        <button type="button" class="dg-chip" data-sis="tracao"><i class="material-icons-round">settings</i>Tração e motor <b></b></button>
+                        <button type="button" class="dg-chip" data-sis="correia"><i class="material-icons-round">swap_horiz</i>Correias <b></b></button>
+                        <button type="button" class="dg-chip" data-sis="mancal"><i class="material-icons-round">radio_button_checked</i>Mancais e rolamentos <b></b></button>
+                        <button type="button" class="dg-chip" data-sis="processo"><i class="material-icons-round">layers</i>Processo e chapas <b></b></button>
+                    </div>
+                    <div class="dg-acoes">
+                        <span class="dg-cont" id="dgCont"></span>
+                        <button type="button" class="dg-btn" id="dgAbrir"><i class="material-icons-round">unfold_more</i>Expandir todas</button>
+                        <button type="button" class="dg-btn" id="dgFechar"><i class="material-icons-round">unfold_less</i>Recolher</button>
+                    </div>
+                </div>
+                <div class="dg-lista" id="dgLista">
+                    <details class="dg-item" data-sis="pneu" data-sev="crit">
+                        <summary>
+                            <span class="dg-num">01</span>
+                            <span class="dg-tit"><b>Esteira não sobe</b><small>Ao liberar a prensa, os braços continuam na posição baixa (espera).</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-crit">Para a produção</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Sem ar na linha ou registro geral fechado</li><li>Válvula solenóide 52S30038 sem sinal de 24 VCC ou bobina queimada</li><li>Pressão regulada baixa demais no FRL</li><li>Vazamento grande em mangueira ou conexão</li><li>Garfo/articulação do cilindro travado ou solto</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Olhar o manômetro do FRL: deve indicar a pressão de trabalho ajustada na partida da máquina</li><li>Com multímetro, medir 24 VCC no conector da válvula quando o comando pede a subida</li><li>Acionar a válvula pelo botão manual (override) do corpo dela: se o cilindro sobe, o problema é elétrico/comando</li><li>Percorrer as mangueiras ouvindo chiado de ar</li><li>Com a máquina travada (LOTO), verificar se o garfo e a articulação ISO 80 giram livres</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Restabelecer o ar e ajustar a pressão no regulador</li><li>Trocar a bobina 24 VCC ou corrigir o cabo/conector</li><li>Trocar a mangueira ou refazer a conexão que vaza</li><li>Soltar e realinhar o garfo; trocar a articulação se estiver com folga ou travada</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20v%C3%A1lvula%20solen%C3%B3ide%2052S30038%2024VCC%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Válvula solenóide 52S30038 24 VCC</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1/2-D-MIDI-ST%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>FRL PCA-1/2-D-MIDI-ST</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Esteira%20n%C3%A3o%20sobe"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="pneu" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">02</span>
+                            <span class="dg-tit"><b>Sobe ou desce devagar, ou com trancos</b><small>O movimento existe, mas demora, para no meio ou dá solavancos.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Amortecimento do cilindro fechado demais</li><li>Pressão baixa ou FRL com filtro entupido</li><li>Falta de lubrificação no ar (copo do lubrificador vazio)</li><li>Vedação interna do cilindro gasta (ar passa de uma câmara para a outra)</li><li>Desalinhamento entre cilindro e braço, causando atrito</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Conferir a pressão com a esteira em movimento: se cair muito, o filtro está entupido ou a linha é fina</li><li>Ver o nível do copo do lubrificador do FRL</li><li>Com o cilindro parado em fim de curso, ouvir se sai ar continuamente pelo escape da válvula</li><li>Observar se a haste entra reta ou força para um lado</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Abrir o parafuso de amortecimento aos poucos (1/4 de volta por vez) nos dois cilindros igualmente</li><li>Limpar ou trocar o elemento filtrante; completar o óleo do lubrificador</li><li>Trocar o kit de vedação ou o cilindro DS2C-80-350-M-C</li><li>Realinhar fixação CA-80 e garfo</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20cilindro%20DS2C-80-350-M-C%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Cilindro DS2C-80-350-M-C</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1/2-D-MIDI-ST%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>FRL PCA-1/2-D-MIDI-ST</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Sobe%20ou%20desce%20devagar%2C%20ou%20com%20trancos"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="pneu" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">03</span>
+                            <span class="dg-tit"><b>Esteira desce sozinha ou não segura em cima</b><small>Durante a tração os braços baixam aos poucos e as chapas raspam.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Vazamento na vedação do êmbolo do cilindro</li><li>Vazamento na mangueira ou conexão da câmara que segura em cima</li><li>Válvula com vazamento interno ou carretel travado no meio</li><li>Queda de pressão na rede durante o ciclo</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Subir a esteira, cortar o comando e observar quanto ela desce em 1 minuto</li><li>Passar espuma (água com sabão) nas conexões do lado de subida</li><li>Ouvir escape contínuo na válvula com a esteira parada em cima</li><li>Acompanhar o manômetro enquanto outras máquinas da linha consomem ar</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Trocar a conexão ou mangueira com vazamento</li><li>Trocar o kit de vedação do cilindro</li><li>Limpar ou trocar a válvula 52S30038</li><li>Avaliar reservatório ou linha maior se a rede cai no ciclo</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20cilindro%20DS2C-80-350-M-C%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Cilindro DS2C-80-350-M-C</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20v%C3%A1lvula%2052S30038%2024VCC%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Válvula 52S30038 24 VCC</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Esteira%20desce%20sozinha%20ou%20n%C3%A3o%20segura%20em%20cima"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="pneu" data-sev="media">
+                        <summary>
+                            <span class="dg-num">04</span>
+                            <span class="dg-tit"><b>Um lado sobe antes do outro</b><small>Os braços não sobem por igual; a chapa entra inclinada.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Amortecimentos regulados diferentes nos dois cilindros</li><li>Um cilindro com vedação gasta</li><li>Mangueiras de comprimentos ou bitolas diferentes</li><li>Articulação ou garfo com folga de um lado</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Comparar quantas voltas estão abertas nos dois parafusos de amortecimento</li><li>Medir o tempo de subida de cada cilindro separadamente</li><li>Conferir folga nas articulações ISO 80 e ponteiras M20</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Igualar a regulagem dos amortecimentos</li><li>Trocar vedação do cilindro mais lento</li><li>Trocar articulação ou ponteira com folga</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20articula%C3%A7%C3%A3o%20ISO%2080%20e%20ponteira%20M20%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Articulação ISO 80 + ponteira M20</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20garfo%20ISO%2080%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Garfo DNC-ISO 80/100</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Um%20lado%20sobe%20antes%20do%20outro"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="pneu" data-sev="media">
+                        <summary>
+                            <span class="dg-num">05</span>
+                            <span class="dg-tit"><b>Vazamento de ar ou chiado constante</b><small>Barulho de ar escapando mesmo com a máquina parada.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Conexão rápida gasta ou mangueira mal cortada</li><li>Dreno do FRL aberto ou com sujeira</li><li>Vedação da haste do cilindro gasta</li><li>Escape da válvula soprando (vazamento interno)</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Passar espuma nas conexões, no FRL e na saída da haste</li><li>Ver se o ar sai pelo silenciador da válvula com ela parada</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Recortar a mangueira em esquadro e reconectar; trocar a conexão rápida</li><li>Limpar ou trocar o dreno do FRL</li><li>Trocar vedação da haste ou o cilindro</li><li>Trocar a válvula se o vazamento for interno</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1/2-D-MIDI-ST%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>FRL PCA-1/2-D-MIDI-ST</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Vazamento%20de%20ar%20ou%20chiado%20constante"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="pneu" data-sev="media">
+                        <summary>
+                            <span class="dg-num">06</span>
+                            <span class="dg-tit"><b>Água na linha de ar ou válvula travando</b><small>Gotas de água no escape, válvula que gruda ou falha de vez em quando.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Pneumática</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Dreno do FRL não feito no início do turno</li><li>Ambiente úmido pela molhagem das chapas</li><li>Elemento filtrante saturado</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Ver se há água acumulada no copo do filtro</li><li>Conferir o estado do elemento filtrante</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Drenar o FRL todo início de turno (consta no plano diário/semanal)</li><li>Trocar o elemento filtrante</li><li>Proteger o FRL e a válvula de respingos da molhagem</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20FRL%20PCA-1/2-D-MIDI-ST%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>FRL PCA-1/2-D-MIDI-ST</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20%C3%81gua%20na%20linha%20de%20ar%20ou%20v%C3%A1lvula%20travando"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="tracao" data-sev="crit">
+                        <summary>
+                            <span class="dg-num">07</span>
+                            <span class="dg-tit"><b>Motor não liga</b><small>Com a esteira em cima e o comando de tração dado, o motoredutor não gira.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Tração e motor</em><em class="dg-sev dg-sev-crit">Para a produção</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Disjuntor ou relé térmico desarmado</li><li>Falta de fase na alimentação</li><li>Botão de emergência acionado ou proteção aberta (intertravamento)</li><li>Fechamento errado do motor (220 V em Δ / 380 V em Y)</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Conferir disjuntor e relé térmico no painel</li><li>Medir tensão nas três fases na entrada do motor (220 ou 380 V conforme a rede)</li><li>Verificar emergências e chaves de segurança das proteções</li><li>Conferir as pontes na caixa de ligação do motor</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Rearmar só depois de descobrir por que desarmou</li><li>Corrigir a fase ou conexão solta</li><li>Fechar as proteções e resetar a emergência</li><li>Corrigir o fechamento conforme a placa do motor</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20motoredutor%20SEW%20KA37/T%20DRN80MP4%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Motoredutor SEW KA37/T DRN80MP4</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Motor%20n%C3%A3o%20liga"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="tracao" data-sev="crit">
+                        <summary>
+                            <span class="dg-num">08</span>
+                            <span class="dg-tit"><b>Motor gira, mas as correias não andam</b><small>Barulho de motor ligado, porém os braços ficam parados.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Tração e motor</em><em class="dg-sev dg-sev-crit">Para a produção</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Corrente ASA 60 quebrada ou saiu da engrenagem</li><li>Chaveta ou parafuso de fixação do eixo oco Ø30 solto</li><li>Engrenagem solta no eixo</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Com LOTO, abrir a proteção da corrente e verificar a corrente e as engrenagens</li><li>Marcar com caneta eixo e cubo e ver se patinam um sobre o outro</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Trocar ou emendar a corrente ASA 60 e esticar</li><li>Trocar a chaveta e reapertar a fixação do eixo oco</li><li>Reapertar o parafuso da engrenagem com trava química</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20corrente%20ASA%2060%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Corrente ASA 60</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Motor%20gira%2C%20mas%20as%20correias%20n%C3%A3o%20andam"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="tracao" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">09</span>
+                            <span class="dg-tit"><b>Motor esquentando ou desarmando o térmico</b><small>Carcaça muito quente ao toque ou relé desarma depois de um tempo.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Tração e motor</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Correias tensionadas demais</li><li>Mancal travando e pesando a transmissão</li><li>Corrente sem lubrificação ou esticada demais</li><li>Tensão baixa ou falta de fase</li><li>Relé térmico regulado abaixo da corrente do motor</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Medir a corrente com alicate amperímetro: nominal 4,80 A em 220 V ou 2,75 A em 380 V</li><li>Com o motor desligado, girar a transmissão à mão e sentir pontos duros</li><li>Conferir a regulagem do relé térmico</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Reduzir a tensão das correias ao necessário</li><li>Trocar o mancal que está travando</li><li>Lubrificar e ajustar a corrente</li><li>Regular o térmico na corrente nominal da placa</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20mancal%20UCFL208%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Mancal UCFL208</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Motor%20esquentando%20ou%20desarmando%20o%20t%C3%A9rmico"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="tracao" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">10</span>
+                            <span class="dg-tit"><b>Ruído ou vibração na transmissão</b><small>Estalos, batidas ou chiado na região da corrente e das engrenagens.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Tração e motor</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Corrente ASA 60 frouxa ou seca</li><li>Engrenagens desalinhadas ou dentes gastos</li><li>Mancal UCFL208 seco ou com folga</li><li>Parafusos de fixação soltos</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Com LOTO, medir a flecha da corrente: deve ceder pouco ao ser empurrada no meio</li><li>Encostar uma régua nas faces das duas engrenagens para ver o alinhamento</li><li>Mexer o eixo para cima e para baixo procurando folga nos mancais</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Esticar e lubrificar a corrente (fino, sem escorrer)</li><li>Realinhar ou trocar engrenagens gastas junto com a corrente</li><li>Engraxar ou trocar o mancal</li><li>Reapertar a estrutura e as proteções</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20corrente%20ASA%2060%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Corrente ASA 60</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20mancal%20UCFL208%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Mancal UCFL208</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Ru%C3%ADdo%20ou%20vibra%C3%A7%C3%A3o%20na%20transmiss%C3%A3o"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="tracao" data-sev="media">
+                        <summary>
+                            <span class="dg-num">11</span>
+                            <span class="dg-tit"><b>Vazamento de óleo no redutor</b><small>Mancha de óleo embaixo do motoredutor SEW.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Tração e motor</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Retentor do eixo gasto</li><li>Bujão de dreno ou de nível solto</li><li>Excesso de óleo após troca</li><li>Respiro entupido (pressão interna)</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Limpar e observar de onde o óleo sai</li><li>Conferir o nível: o redutor KA37 leva cerca de 0,50 L de CLP 220</li><li>Ver se o respiro está livre</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Trocar o retentor</li><li>Reapertar ou trocar a arruela dos bujões</li><li>Corrigir o nível com óleo CLP 220</li><li>Limpar ou trocar o respiro</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20retentor%20e%20%C3%B3leo%20CLP%20220%20do%20redutor%20SEW%20KA37%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Motoredutor SEW KA37/T DRN80MP4</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Vazamento%20de%20%C3%B3leo%20no%20redutor"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="correia" data-sev="crit">
+                        <summary>
+                            <span class="dg-num">12</span>
+                            <span class="dg-tit"><b>Correia patinando: chapas não avançam</b><small>O tambor gira, mas a correia ou a chapa escorrega.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Correias</em><em class="dg-sev dg-sev-crit">Para a produção</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Correia W50MV-G frouxa</li><li>Correia ou tambor molhado/sujo de resina</li><li>Esteira não está subindo o suficiente para encostar nas chapas</li><li>Peso de chapas acima do previsto</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Conferir a tensão nas quatro vias: devem estar iguais</li><li>Ver se há sujeira ou resina na face da correia e no rolete</li><li>Confirmar que os cilindros chegam ao fim de curso em cima</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Tensionar pelo parafuso/porca do suporte, igual nas quatro vias</li><li>Limpar correia e rolete</li><li>Corrigir a elevação (ver falhas de pneumática)</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W50MV-G%2095x2925%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Correia W50MV-G 95×2925</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Correia%20patinando%3A%20chapas%20n%C3%A3o%20avan%C3%A7am"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="correia" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">13</span>
+                            <span class="dg-tit"><b>Correia desalinhando ou saindo do rolete</b><small>A correia corre para um lado e encosta na lateral do braço.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Correias</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Tensão diferente de um lado do rolete</li><li>Rolete fora de esquadro</li><li>Sujeira acumulada em um lado do rolete</li><li>Mancal com folga</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Medir a distância do rolete até a estrutura nos dois lados</li><li>Girar devagar e ver para que lado a correia corre</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Apertar meia volta no lado para o qual a correia NÃO está indo, e testar</li><li>Limpar o rolete</li><li>Trocar mancal com folga</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W50MV-G%2095x2925%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Correia W50MV-G 95×2925</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Correia%20desalinhando%20ou%20saindo%20do%20rolete"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="correia" data-sev="media">
+                        <summary>
+                            <span class="dg-num">14</span>
+                            <span class="dg-tit"><b>Correia com rasgo, desgaste ou emenda abrindo</b><small>Bordas desfiadas, cortes ou a emenda Flexproof soltando.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Correias</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Contato com rebarba ou parafuso</li><li>Correia desalinhando por muito tempo</li><li>Fim da vida útil</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Inspecionar a correia inteira girando devagar (com LOTO entre as voltas)</li><li>Procurar o ponto de atrito na estrutura</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Eliminar a rebarba ou o ponto de atrito</li><li>Trocar a correia; trocar sempre com a esteira travada e sem ar</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W50MV-G%2095x2925%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Correia W50MV-G 95×2925</a><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20correia%20W20V-B%20280x3000%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Correia W20V-B 280×3000</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Correia%20com%20rasgo%2C%20desgaste%20ou%20emenda%20abrindo"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="mancal" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">15</span>
+                            <span class="dg-tit"><b>Mancal UCFL208 quente ou barulhento</b><small>Mancal muito quente ao toque, ronco ou chiado.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Mancais e rolamentos</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Falta de graxa</li><li>Contaminação por água da molhagem</li><li>Desalinhamento do eixo</li><li>Parafusos do flange soltos</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Encostar a mão (com cuidado) ou medir com termômetro: comparar com os outros mancais</li><li>Ouvir com uma chave de fenda encostada no mancal</li><li>Conferir aperto dos parafusos do flange</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Reengraxar com graxa mineral até sair um pouco pela vedação</li><li>Trocar o mancal se continuar quente ou com folga</li><li>Realinhar o eixo e reapertar</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20mancal%20UCFL208%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Mancal UCFL208</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Mancal%20UCFL208%20quente%20ou%20barulhento"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="mancal" data-sev="media">
+                        <summary>
+                            <span class="dg-num">16</span>
+                            <span class="dg-tit"><b>Rolinho de apoio de saída travado ou barulhento</b><small>Um rolinho não gira, risca a chapa ou faz ruído na saída.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Mancais e rolamentos</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Rolamento 6200 DDU gasto</li><li>Água ou resíduo dentro do rolamento</li><li>Eixo do rolinho torto</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Girar cada rolinho com a mão e sentir aspereza</li><li>Ver se o rolinho balança no eixo</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Trocar o rolamento 6200 DDU (é vedado: não recebe graxa, se pesar troca)</li><li>Trocar os dois rolamentos do rolinho de uma vez</li><li>Desempenar ou trocar o eixo</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20rolamentos%206200%20DDU%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Rolamento 6200 DDU</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Rolinho%20de%20apoio%20de%20sa%C3%ADda%20travado%20ou%20barulhento"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="processo" data-sev="alta">
+                        <summary>
+                            <span class="dg-num">17</span>
+                            <span class="dg-tit"><b>Chapas saindo empenadas</b><small>Compensados tortos ou ondulados depois do resfriamento.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Processo e chapas</em><em class="dg-sev dg-sev-alta">Alta</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Molhagem insuficiente ou mal distribuída</li><li>Ciclo lento: chapa fica parada quente</li><li>Chapas empilhadas ainda quentes</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Ver se todos os bicos de pulverização estão molhando por igual</li><li>Cronometrar o tempo da chapa sob a cobertura</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Desentupir e ajustar a pulverização</li><li>Ajustar o sincronismo com a prensa</li><li>Garantir o resfriamento antes do empilhamento</li></ol></div>
+                            <div class="dg-pe"><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Chapas%20saindo%20empenadas"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="processo" data-sev="media">
+                        <summary>
+                            <span class="dg-num">18</span>
+                            <span class="dg-tit"><b>Chapa entrando torta</b><small>A chapa entra inclinada e bate nas guias.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Processo e chapas</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Braços subindo desiguais</li><li>Uma correia com tensão diferente</li><li>Guias laterais sujas ou fora de posição</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Observar a subida dos dois cilindros</li><li>Comparar a tensão das quatro correias</li><li>Medir a abertura das guias</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Ver a falha "Um lado sobe antes do outro"</li><li>Igualar a tensão</li><li>Limpar e reposicionar as guias</li></ol></div>
+                            <div class="dg-pe"><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Chapa%20entrando%20torta"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                    <details class="dg-item" data-sis="processo" data-sev="media">
+                        <summary>
+                            <span class="dg-num">19</span>
+                            <span class="dg-tit"><b>Pacote irregular na caixa de saída</b><small>Chapas caem fora de posição e o pacote fica desalinhado.</small></span>
+                            <span class="dg-tags"><em class="dg-sis">Processo e chapas</em><em class="dg-sev dg-sev-media">Média</em></span>
+                            <i class="material-icons-round dg-seta">expand_more</i>
+                        </summary>
+                        <div class="dg-corpo">
+                            <div class="dg-col"><h5><i class="material-icons-round">help_outline</i>Causas prováveis</h5><ol><li>Altura de queda grande demais</li><li>Sincronismo de saída fora do tempo</li><li>Guia de saída solta</li><li>Rolinhos de apoio de saída travados</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">fact_check</i>Como verificar</h5><ol><li>Conferir a guia de saída</li><li>Ver se todos os rolinhos de saída giram livres</li></ol></div>
+                            <div class="dg-col"><h5><i class="material-icons-round">build</i>Como corrigir</h5><ol><li>Ajustar a guia e o tempo do ciclo</li><li>Retirar o pacote ao atingir a altura ideal</li><li>Trocar rolamentos 6200 DDU dos rolinhos travados</li></ol></div>
+                            <div class="dg-pe"><a class="btn-cotar" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%2C%20preciso%20cotar%20rolamentos%206200%20DDU%20para%20a%20esteira%2060.1004"><i class="material-icons-round">shopping_cart</i>Rolamento 6200 DDU</a><a class="dg-sup" target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20Pacote%20irregular%20na%20caixa%20de%20sa%C3%ADda"><i class="material-icons-round">support_agent</i>Falar com a engenharia</a></div>
+                        </div>
+                    </details>
+                </div>
+                <p class="dg-vazio" id="dgVazio" hidden>Nenhuma falha encontrada com esse termo. Tente outra palavra ou <a target="_blank" rel="noopener" href="https://wa.me/5549991829555?text=Ol%C3%A1%20Eng.%20Julio%2C%20preciso%20de%20suporte%20na%20esteira%2060.1004%3A%20sintoma%20n%C3%A3o%20listado%20no%20manual">fale com a engenharia</a>.</p>
             </section>
 
             <section id="seguranca">
@@ -2299,6 +2644,40 @@
                 if (el.closest('#capa') && i < 6) return; /* topo da capa aparece na hora */
                 el.classList.add('ege-rev'); io.observe(el);
             });
+        })();
+    </script>
+
+    <script>
+        /* diagnóstico: filtro por sistema, busca, expandir/recolher */
+        (function () {
+            var itens = [].slice.call(document.querySelectorAll('.dg-item'));
+            if (!itens.length) return;
+            var chips = [].slice.call(document.querySelectorAll('.dg-chip'));
+            var busca = document.getElementById('dgBusca'), cont = document.getElementById('dgCont'), vazio = document.getElementById('dgVazio');
+            var sis = 'todos';
+            var semAc = function (t) { return t.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase(); };
+            itens.forEach(function (it) { it._txt = semAc(it.textContent); });
+            chips.forEach(function (c) {
+                var k = c.dataset.sis, n = k === 'todos' ? itens.length : itens.filter(function (i) { return i.dataset.sis === k; }).length;
+                c.querySelector('b').textContent = n;
+                c.addEventListener('click', function () { sis = k; chips.forEach(function (x) { x.classList.toggle('ativo', x === c); }); aplicar(); });
+            });
+            function aplicar() {
+                var q = semAc((busca.value || '').trim()), termos = q ? q.split(/\s+/) : [], vis = 0;
+                itens.forEach(function (it) {
+                    var ok = (sis === 'todos' || it.dataset.sis === sis) && termos.every(function (t) { return it._txt.indexOf(t) > -1; });
+                    it.hidden = !ok; if (ok) vis++;
+                    if (ok && termos.length) it.open = true;
+                });
+                cont.textContent = vis + (vis === 1 ? ' falha' : ' falhas');
+                vazio.hidden = vis > 0;
+            }
+            busca.addEventListener('input', aplicar);
+            document.getElementById('dgAbrir').addEventListener('click', function () { itens.forEach(function (i) { if (!i.hidden) i.open = true; }); });
+            document.getElementById('dgFechar').addEventListener('click', function () { itens.forEach(function (i) { i.open = false; }); });
+            addEventListener('beforeprint', function () { itens.forEach(function (i) { i._era = i.open; i.open = true; }); });
+            addEventListener('afterprint', function () { itens.forEach(function (i) { i.open = i._era; }); });
+            aplicar();
         })();
     </script>
 </body>
